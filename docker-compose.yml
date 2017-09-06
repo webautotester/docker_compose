@@ -1,0 +1,10 @@
+version: '2'
+services:
+  mongo: 
+    image: "mongo:3.0"
+    ports:
+      - "27017:27017"
+  storage:
+    image: "xblanc/wat_storage"
+    ports:
+      - "9090:9090"
