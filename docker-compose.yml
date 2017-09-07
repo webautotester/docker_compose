@@ -7,4 +7,13 @@ services:
   storage:
     image: "xblanc/wat_storage"
     ports:
-      - "9090:9090"
+      - "8085:8085"
+  rabbit:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  scheduler:
+    image: "xblanc/wat_scheduler"
+    ports:
+      - "8090:8090"

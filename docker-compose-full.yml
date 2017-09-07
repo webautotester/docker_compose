@@ -1,0 +1,14 @@
+version: '2'
+services:
+  mongo: 
+    image: "mongo:3.0"
+    ports:
+      - "27017:27017"
+  storage:
+    image: "xblanc/wat_storage"
+    ports:
+      - "9090:9090"
+  rabbit:
+    image: "rabbitmq:3"
+    ports:
+      - "5672:5672"
