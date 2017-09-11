@@ -4,16 +4,26 @@ services:
     image: "mongo:3.0"
     ports:
       - "27017:27017"
-  storage:
-    image: "xblanc/wat_storage"
-    ports:
-      - "8085:8085"
   rabbit:
     image: "rabbitmq:3-management"
     ports:
       - "5672:5672"
       - "15672:15672"
+  storage:
+    image: "xblanc/wat_storage"
+    ports:
+      - "8085:8085"
+    depends_on:
+      - "mongo"
   scheduler:
     image: "xblanc/wat_scheduler"
     ports:
       - "8090:8090"
+    depends_on:
+      - "rabbit"
+      - "mongo"
+  player1:
+    image: "xblanc/wat_player"
+    depends_on:
+      - "rabbit"
+      - "mongo"
