@@ -1,6 +1,6 @@
 version: '2'
 services:
-  mongo: 
+  mongo:
     image: "mongo:3.0"
     ports:
       - "27017:27017"
@@ -10,12 +10,14 @@ services:
       - "5672:5672"
       - "15672:15672"
   storage:
+    build: https://github.com/webautotester/storage.git
     image: "xblanc/wat_storage"
     ports:
       - "8085:8085"
     depends_on:
       - "mongo"
   scheduler:
+    build: https://github.com/webautotester/scheduler.git
     image: "xblanc/wat_scheduler"
     ports:
       - "8090:8090"
@@ -23,6 +25,7 @@ services:
       - "rabbit"
       - "mongo"
   player1:
+    build: https://github.com/webautotester/player.git
     image: "xblanc/wat_player"
     depends_on:
       - "rabbit"
