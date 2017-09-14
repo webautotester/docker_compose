@@ -24,7 +24,21 @@ services:
     depends_on:
       - "rabbit"
       - "mongo"
+  front:
+    build: https://github.com/webautotester/front.git
+    image: "xblanc/wat_front"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "rabbit"
+      - "mongo"
   player1:
+    build: https://github.com/webautotester/player.git
+    image: "xblanc/wat_player"
+    depends_on:
+      - "rabbit"
+      - "mongo"
+  player2:
     build: https://github.com/webautotester/player.git
     image: "xblanc/wat_player"
     depends_on:
