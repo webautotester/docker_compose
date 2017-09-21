@@ -28,7 +28,7 @@ services:
     build: https://github.com/webautotester/front.git
     image: "xblanc/wat_front"
     ports:
-      - "8080:8080"
+      - "80:80"
     depends_on:
       - "rabbit"
       - "mongo"
