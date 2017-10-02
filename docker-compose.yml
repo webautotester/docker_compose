@@ -1,4 +1,5 @@
 version: '2'
+
 services:
   mongo:
     image: "mongo:3.0"
@@ -29,18 +30,27 @@ services:
     image: "xblanc/wat_front"
     ports:
       - "80:80"
+    volumes:
+      - screens:/tmp/front/ops/app/img/screen
     depends_on:
       - "rabbit"
       - "mongo"
   player1:
     build: https://github.com/webautotester/player.git
     image: "xblanc/wat_player"
+    volumes:
+      - screens:/tmp/run/screen
     depends_on:
       - "rabbit"
       - "mongo"
   player2:
     build: https://github.com/webautotester/player.git
     image: "xblanc/wat_player"
+    volumes:
+      - screens:/tmp/run/screen
     depends_on:
       - "rabbit"
       - "mongo"
+
+volumes:
+  screens:
