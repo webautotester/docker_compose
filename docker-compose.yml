@@ -10,31 +10,28 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-  storage:
-    build: https://github.com/webautotester/storage.git
-    image: "xblanc/wat_storage"
-    ports:
-      - "8085:8085"
-    depends_on:
-      - "mongo"
   scheduler:
     build: https://github.com/webautotester/scheduler.git
     image: "xblanc/wat_scheduler"
-    ports:
-      - "8090:8090"
+    depends_on:
+      - "rabbit"
+      - "mongo"
+  api:
+    build: https://github.com/webautotester/api.git
+    image: "xblanc/wat_api"
     depends_on:
       - "rabbit"
       - "mongo"
   front:
-    build: https://github.com/webautotester/front.git
+    build: "https://github.com/webautotester/front.git"
     image: "xblanc/wat_front"
-    ports:
-      - "80:80"
     volumes:
       - screens:/tmp/front/ops/app/img/screen
+    ports:
+      - 8080:8080
+    restart: always
     depends_on:
-      - "rabbit"
-      - "mongo"
+      - "api"
   player1:
     build: https://github.com/webautotester/player.git
     image: "xblanc/wat_player"
