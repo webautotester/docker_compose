@@ -28,7 +28,7 @@ services:
     volumes:
       - screens:/tmp/front/ops/app/img/screen
     ports:
-      - 8080:8080
+      - 8080:80
     restart: always
     depends_on:
       - "api"
