@@ -28,6 +28,7 @@ services:
       - screens:/tmp/front/ops/app/img/screen
     ports:
       - 80:80
+      - 443:443
     restart: always
     depends_on:
       - "api"
