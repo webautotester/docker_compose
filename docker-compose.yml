@@ -26,6 +26,7 @@ services:
     build: "https://github.com/webautotester/front.git"
     image: "xblanc/wat_front"
     volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
       - screens:/tmp/front/ops/app/img/screen
     ports:
       - 8080:80
