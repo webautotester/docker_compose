@@ -3,8 +3,6 @@ version: '2'
 services:
   mongo:
     image: "mongo:3.0"
-    ports:
-      - "27017:27017"
   rabbit:
     image: "rabbitmq:3-management"
     ports:
@@ -29,7 +27,7 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
       - screens:/tmp/front/ops/app/img/screen
     ports:
-      - 8080:80
+      - 80:80
     restart: always
     depends_on:
       - "api"
