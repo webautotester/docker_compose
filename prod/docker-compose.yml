@@ -24,7 +24,7 @@ services:
     image: "xblanc/wat_front"
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
-      - screens:/tmp/front/ops/app/img/screen
+      - screens:/var/www/public/img/screen
     ports:
       - 80:80
       - 443:443

@@ -28,7 +28,7 @@ services:
       dockerfile : DockerfileDebug
     image: "xblanc/wat_front"
     volumes:
-      - screens:/tmp/front/ops/app/img/screen
+      - screens:/var/www/public/img/screen
     ports:
       - 8080:80
     restart: always
