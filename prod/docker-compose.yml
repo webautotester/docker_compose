@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+  mongo:
+    image: "mongo:3.0"
+  rabbit:
+    image: "rabbitmq:3"
+  scheduler:
+    build: https://github.com/webautotester/scheduler.git
+    image: "xblanc/wat_scheduler"
+    depends_on:
+      - "rabbit"
+      - "mongo"
+  api:
+    build: https://github.com/webautotester/api.git
+    image: "xblanc/wat_api"
+    depends_on:
+      - "rabbit"
+      - "mongo"
+  front:
+    build: "https://github.com/webautotester/front.git"
+    image: "xblanc/wat_front"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - screens:/tmp/front/ops/app/img/screen
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    depends_on:
+      - "api"
+  player1:
+    build: https://github.com/webautotester/player.git
+    image: "xblanc/wat_player"
+    volumes:
+      - screens:/tmp/run/screen
+    depends_on:
+      - "rabbit"
+      - "mongo"
+  player2:
+    build: https://github.com/webautotester/player.git
+    image: "xblanc/wat_player"
+    volumes:
+      - screens:/tmp/run/screen
+    depends_on:
+      - "rabbit"
+      - "mongo"
+
+volumes:
+  screens:
