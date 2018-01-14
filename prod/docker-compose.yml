@@ -18,7 +18,9 @@ services:
       - "rabbit"
       - "mongo"
   front:
-    build: "https://github.com/webautotester/front.git"
+    build: 
+      context: "https://github.com/webautotester/front.git"
+      dockerfile : DockerfileProd
     image: "xblanc/wat_front"
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt

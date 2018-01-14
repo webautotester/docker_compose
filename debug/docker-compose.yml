@@ -23,7 +23,9 @@ services:
       - "rabbit"
       - "mongo"
   front:
-    build: "https://github.com/webautotester/front.git"
+    build: 
+      context: "https://github.com/webautotester/front.git"
+      dockerfile : DockerfileDebug
     image: "xblanc/wat_front"
     volumes:
       - screens:/tmp/front/ops/app/img/screen
