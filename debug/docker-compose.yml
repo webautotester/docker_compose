@@ -19,6 +19,8 @@ services:
   api:
     build: https://github.com/webautotester/api.git
     image: "xblanc/wat_api"
+    environment:
+      - NODE_ENV = DEBUG
     depends_on:
       - "rabbit"
       - "mongo"
