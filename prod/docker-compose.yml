@@ -17,7 +17,7 @@ services:
     environment:
       - NODE_ENV = PROD
     env_file:
-      - github = /etc/wat/github/oauth.env
+      - /etc/wat/github/oauth.env
     depends_on:
       - "rabbit"
       - "mongo"
