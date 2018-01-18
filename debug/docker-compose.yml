@@ -20,7 +20,8 @@ services:
     build: https://github.com/webautotester/api.git
     image: "xblanc/wat_api"
     environment:
-      - NODE_ENV = DEBUG
+      NODE_ENV: 'DEBUG'
+      JWT_SECRET: 'localsercretstoredinpublicgithubthisisnotsosecret'
     depends_on:
       - "rabbit"
       - "mongo"
