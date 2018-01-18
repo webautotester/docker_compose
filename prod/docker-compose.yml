@@ -15,7 +15,7 @@ services:
     build: https://github.com/webautotester/api.git
     image: "xblanc/wat_api"
     environment:
-      - NODE_ENV = PROD
+      NODE_ENV=PROD
     env_file:
       - /etc/wat/github/oauth.env
     depends_on:
