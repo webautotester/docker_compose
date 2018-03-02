@@ -11,13 +11,17 @@ services:
       - "5672:5672"
       - "15672:15672"
   scheduler:
-    build: https://github.com/webautotester/scheduler.git
+    build: 
+      context: https://github.com/webautotester/wat.git
+      dockerfile: ./scheduler/Dockerfile
     image: "xblanc/wat_scheduler"
     depends_on:
       - "rabbit"
       - "mongo"
   api:
-    build: https://github.com/webautotester/api.git
+    build: 
+      context: https://github.com/webautotester/wat.git
+      dockerfile: ./api/Dockerfile
     image: "xblanc/wat_api"
     environment:
       NODE_ENV: 'DEBUG'
@@ -27,8 +31,8 @@ services:
       - "mongo"
   front:
     build: 
-      context: "https://github.com/webautotester/front.git"
-      dockerfile : DockerfileDebug
+      context: https://github.com/webautotester/wat.git
+      dockerfile: ./front/DockerfileDebug
     image: "xblanc/wat_front"
     volumes:
       - screens:/var/www/public/img/screen
@@ -38,7 +42,9 @@ services:
     depends_on:
       - "api"
   player1:
-    build: https://github.com/webautotester/player.git
+    build: 
+      context: https://github.com/webautotester/player.git
+      dockerfile: ./player/Dockerfile
     image: "xblanc/wat_player"
     volumes:
       - screens:/tmp/run/screen
@@ -46,7 +52,9 @@ services:
       - "rabbit"
       - "mongo"
   player2:
-    build: https://github.com/webautotester/player.git
+    build: 
+      context: https://github.com/webautotester/player.git
+      dockerfile: ./player/Dockerfile
     image: "xblanc/wat_player"
     volumes:
       - screens:/tmp/run/screen

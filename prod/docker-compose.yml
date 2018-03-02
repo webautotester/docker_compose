@@ -6,13 +6,17 @@ services:
   rabbit:
     image: "rabbitmq:3"
   scheduler:
-    build: https://github.com/webautotester/scheduler.git
+    build: 
+      context: https://github.com/webautotester/wat.git
+      dockerfile: ./scheduler/Dockerfile
     image: "xblanc/wat_scheduler"
     depends_on:
       - "rabbit"
       - "mongo"
   api:
-    build: https://github.com/webautotester/api.git
+    build: 
+      context: https://github.com/webautotester/wat.git
+      dockerfile: ./api/Dockerfile
     image: "xblanc/wat_api"
     environment:
       NODE_ENV: 'PROD'
@@ -23,8 +27,8 @@ services:
       - "mongo"
   front:
     build: 
-      context: "https://github.com/webautotester/front.git"
-      dockerfile : DockerfileProd
+      context: https://github.com/webautotester/wat.git
+      dockerfile: ./front/DockerfileProd
     image: "xblanc/wat_front"
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
@@ -36,7 +40,9 @@ services:
     depends_on:
       - "api"
   player1:
-    build: https://github.com/webautotester/player.git
+    build: 
+      context: https://github.com/webautotester/player.git
+      dockerfile: ./player/Dockerfile
     image: "xblanc/wat_player"
     volumes:
       - screens:/tmp/run/screen
@@ -44,7 +50,9 @@ services:
       - "rabbit"
       - "mongo"
   player2:
-    build: https://github.com/webautotester/player.git
+    build: 
+      context: https://github.com/webautotester/player.git
+      dockerfile: ./player/Dockerfile
     image: "xblanc/wat_player"
     volumes:
       - screens:/tmp/run/screen
